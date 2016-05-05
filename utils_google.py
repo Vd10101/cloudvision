@@ -5,7 +5,8 @@ from oauth2client import tools, file, client
 from oauth2client.client import GoogleCredentials
 
 # limited preview only (sorry!)
-API_DISCOVERY_FILE = 'cloudvision-63dda4c72669.json'
+API_DISCOVERY_FILE = 'vision_discovery_v1alpha1.json'
+SERVICE_ACCOUNT_FILE = 'cloudvision-63dda4c72669.json'
 
 # [START get_vision_service]
 DISCOVERY_URL='https://{api}.googleapis.com/$discovery/rest?version={apiVersion}'
@@ -31,7 +32,7 @@ def get_api_credentials(scope, service_account=True):
 	credentials = STORAGE.get()
 	if credentials is None or credentials.invalid: #check if new oAuth flow is needed
 		if service_account: #server 2 server flow
-			with open('service_account.json') as f:
+			with open(SERVICE_ACCOUNT_FILE) as f:
 				account = json.loads(f.read())
 				email = account['client_email']
 				key = account['private_key']
