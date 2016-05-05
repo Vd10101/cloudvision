@@ -51,11 +51,11 @@ def detect_face(face_file, max_results=4):
         'image': {
             'content': base64.b64encode(image_content).decode('UTF-8')
             },
+        'imageContext': {
+            },
         'features': [{
             'type': 'FACE_DETECTION',
             'maxResults': max_results,
-            }],
-        'imageContext': [{
             }]
         }]
 
