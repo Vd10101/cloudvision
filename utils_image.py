@@ -29,9 +29,9 @@ def draw_angle(im, pan, tilt, pt, size):
 	x_delta = np.interp(pan,  [-180,180], [-size,size])
 	y_delta = np.interp(tilt, [-180,180], [-size,size])
 	pt2 = (pt[0] + int(x_delta), pt[1] + int(y_delta))
-	cv2.arrowedLine(im, pt, pt2, (0,255,0))
-
-
+##	cv2.arrowedLine(im, pt, pt2, (0,255,0))
+	cv2.line(im, pt, pt2, (0,255,0))
+	
 def extract_vertices(vertices):
 	""" Extract two opposite vertices from a list of 4 (assumption: rectangle) """
 
