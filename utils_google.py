@@ -6,7 +6,7 @@ from oauth2client.client import GoogleCredentials
 
 # limited preview only (sorry!)
 API_DISCOVERY_FILE = 'vision_discovery_v1alpha1.json'
-SERVICE_ACCOUNT_FILE = 'cloudvision-63dda4c72669.json'
+SERVICE_ACCOUNT_FILE = 'service-account.json'
 
 # [START get_vision_service]
 DISCOVERY_URL='https://{api}.googleapis.com/$discovery/rest?version={apiVersion}'
