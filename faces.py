@@ -52,7 +52,6 @@ def detect_face(face_file, max_results=4):
             'content': base64.b64encode(image_content).decode('UTF-8')
             },
         'imageContext': {
-            'content': base64.b64encode(image_content).decode('UTF-8')
             },
         'features': [{
             'type': 'FACE_DETECTION',
