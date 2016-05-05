@@ -12,20 +12,21 @@ SERVICE_ACCOUNT_FILE = 'service-account.json'
 
 # [START get_vision_service]
 DISCOVERY_URL='https://{api}.googleapis.com/$discovery/rest?version={apiVersion}'
+##DISCOVERY_URL='https://vision.googleapis.com/$discovery/rest?version=v1'
 
 """ Google Authentication Utilities """
 
-##def get_vision_api():
-    ## def get_vision_service():
-##    credentials = GoogleCredentials.get_application_default()
-##    return discovery.build('vision', 'v1', credentials=credentials,
-##                           discoveryServiceUrl=DISCOVERY_URL)
-
 def get_vision_api():
-	credentials = get_api_credentials('https://www.googleapis.com/auth/cloud-platform')
-	with open(API_DISCOVERY_FILE, 'r') as f:
-		doc = f.read()	
-	return discovery.build_from_document(doc, credentials=credentials, http=httplib2.Http())
+    ## def get_vision_service():
+    credentials = GoogleCredentials.get_application_default()
+    return discovery.build('vision', 'v1', credentials=credentials,
+                           discoveryServiceUrl=DISCOVERY_URL)
+
+## def get_vision_api():
+##	credentials = get_api_credentials('https://www.googleapis.com/auth/cloud-platform')
+##	with open(API_DISCOVERY_FILE, 'r') as f:
+##		doc = f.read()	
+##	return discovery.build_from_document(doc, credentials=credentials, http=httplib2.Http())
 
 
 def get_api_credentials(scope, service_account=True):
@@ -41,11 +42,15 @@ def get_api_credentials(scope, service_account=True):
 			credentials = ServiceAccountCredentials.from_json_keyfile_name(SERVICE_ACCOUNT_FILE, scope)
 ##			credentials = client.SignedJwtAssertionCredentials(email, key, scope=scope)
 			STORAGE.put(credentials)
-		else: #normal oAuth2 flow
-			CLIENT_SECRETS = os.path.join(os.path.dirname(__file__), 'client_secrets.json')
-			FLOW = client.flow_from_clientsecrets(CLIENT_SECRETS, scope=scope)
-			PARSER = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter, parents=[tools.argparser])
-			FLAGS = PARSER.parse_args(sys.argv[1:])
-			credentials = tools.run_flow(FLOW, STORAGE, FLAGS)
+		else: #Application Default Credentials (ADC)
+			credentials = GoogleCredentials.get_application_default()
+			return = discovery.build('vision', 'v1', credentials=credentials,
+                          discoveryServiceUrl=DISCOVERY_URL)	    
+##		else: #normal oAuth2 flow
+##			CLIENT_SECRETS = os.path.join(os.path.dirname(__file__), 'client_secrets.json')
+##			FLOW = client.flow_from_clientsecrets(CLIENT_SECRETS, scope=scope)
+##			PARSER = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter, parents=[tools.argparser])
+##			FLAGS = PARSER.parse_args(sys.argv[1:])
+##			credentials = tools.run_flow(FLOW, STORAGE, FLAGS)
 		
 	return credentials
