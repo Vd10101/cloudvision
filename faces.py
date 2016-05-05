@@ -55,7 +55,10 @@ def detect_face(face_file, max_results=4):
             'type': 'FACE_DETECTION',
             'maxResults': max_results,
             }]
-      
+      "imageContext":
+{
+
+}
         }]
 
     service = get_vision_service()
