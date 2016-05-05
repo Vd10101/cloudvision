@@ -4,6 +4,7 @@ import sys
 from googleapiclient import discovery
 from oauth2client import tools, file, client
 from oauth2client.client import GoogleCredentials
+from oauth2client.service_account import ServiceAccountCredentials
 
 # limited preview only (sorry!)
 API_DISCOVERY_FILE = 'vision_discovery_v1alpha1.json'
@@ -33,11 +34,12 @@ def get_api_credentials(scope, service_account=True):
 	credentials = STORAGE.get()
 	if credentials is None or credentials.invalid: #check if new oAuth flow is needed
 		if service_account: #server 2 server flow
-			with open(SERVICE_ACCOUNT_FILE) as f:
-				account = json.loads(f.read())
-				email = account['client_email']
-				key = account['private_key']
-			credentials = client.SignedJwtAssertionCredentials(email, key, scope=scope)
+##			with open(SERVICE_ACCOUNT_FILE) as f:
+##				account = json.loads(f.read())
+##				email = account['client_email']
+##				key = account['private_key']
+			credentials = ServiceAccountCredentials.from_json_keyfile_name(SERVICE_ACCOUNT_FILE, scope)
+##			credentials = client.SignedJwtAssertionCredentials(email, key, scope=scope)
 			STORAGE.put(credentials)
 		else: #normal oAuth2 flow
 			CLIENT_SECRETS = os.path.join(os.path.dirname(__file__), 'client_secrets.json')
