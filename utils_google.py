@@ -5,24 +5,24 @@ from oauth2client import tools, file, client
 from oauth2client.client import GoogleCredentials
 
 # limited preview only (sorry!)
-API_DISCOVERY_FILE = 'vision_discovery_v1alpha1.json'
+API_DISCOVERY_FILE = 'cloudvision-63dda4c72669.json'
 
 # [START get_vision_service]
 DISCOVERY_URL='https://{api}.googleapis.com/$discovery/rest?version={apiVersion}'
 
 """ Google Authentication Utilities """
 
-def get_vision_api():
+##def get_vision_api():
     ## def get_vision_service():
-    credentials = GoogleCredentials.get_application_default()
-    return discovery.build('vision', 'v1', credentials=credentials,
-                           discoveryServiceUrl=DISCOVERY_URL)
+##    credentials = GoogleCredentials.get_application_default()
+##    return discovery.build('vision', 'v1', credentials=credentials,
+##                           discoveryServiceUrl=DISCOVERY_URL)
 
-## def get_vision_api():
-##	credentials = get_api_credentials('https://www.googleapis.com/auth/cloud-platform')
-##	with open(API_DISCOVERY_FILE, 'r') as f:
-##		doc = f.read()	
-##	return discovery.build_from_document(doc, credentials=credentials, http=httplib2.Http())
+def get_vision_api():
+	credentials = get_api_credentials('https://www.googleapis.com/auth/cloud-platform')
+	with open(API_DISCOVERY_FILE, 'r') as f:
+		doc = f.read()	
+	return discovery.build_from_document(doc, credentials=credentials, http=httplib2.Http())
 
 
 def get_api_credentials(scope, service_account=True):
