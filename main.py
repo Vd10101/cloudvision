@@ -2,10 +2,11 @@ import json
 from utils_google import get_vision_api
 from utils_image import (read_image, read_image_base64, save_image, draw_face, draw_box, draw_text)
 
-inputfile  = "pic.jpg"
-outputfile = "output.jpg"
+## inputfile  = "pic.jpg"
+## outputfile = "output.jpg"
 
-def main():
+def main(inputfile, outputfile, max_results):
+##def main():
 
 	vision = get_vision_api()
 	
@@ -64,5 +65,16 @@ def show_results(inputfile, data, outputfile):
 	save_image(outputfile, im)
 
 if __name__ == '__main__':
-	main()
-	
+    parser = argparse.ArgumentParser(
+        description='Detects faces in the given image.')
+    parser.add_argument(
+        'input_image', help='the image you\'d like to detect faces in.')
+    parser.add_argument(
+        '--out', dest='output', default='output.jpg',
+        help='the name of the output file.')
+    parser.add_argument(
+        '--max-results', dest='max_results', default=10,
+        help='the max results of face detection.')
+    args = parser.parse_args()
+
+    main(args.input_image, args.output, args.max_results)

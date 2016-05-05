@@ -16,6 +16,8 @@ DISCOVERY_URL='https://{api}.googleapis.com/$discovery/rest?version={apiVersion}
 
 """ Google Authentication Utilities """
 
+## Do not forget to use Application Default Credentials (ADC)
+## export GOOGLE_APPLICATION_CREDENTIALS=service-account.json
 def get_vision_api():
     ## def get_vision_service():
     credentials = GoogleCredentials.get_application_default()
