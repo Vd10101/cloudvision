@@ -44,7 +44,7 @@ def get_api_credentials(scope, service_account=True):
 			STORAGE.put(credentials)
 		else: #Application Default Credentials (ADC)
 			credentials = GoogleCredentials.get_application_default()
-			return = discovery.build('vision', 'v1', credentials=credentials,
+			return discovery.build('vision', 'v1', credentials=credentials,
                           discoveryServiceUrl=DISCOVERY_URL)	    
 ##		else: #normal oAuth2 flow
 ##			CLIENT_SECRETS = os.path.join(os.path.dirname(__file__), 'client_secrets.json')
