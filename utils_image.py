@@ -1,5 +1,6 @@
 import cv2
 from base64 import b64encode
+import numpy as np
 
 """ read/write utilities """
 
