@@ -1,3 +1,4 @@
+import argparse
 import json
 from utils_google import get_vision_api
 from utils_image import (read_image, read_image_base64, save_image, draw_face, draw_box, draw_text)
