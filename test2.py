@@ -9,7 +9,7 @@ from oauth2client.client import GoogleCredentials
 ##gflags.FLAGS['positional_parameters_enforcement'].value = 'EXCEPTION'
 
 import logging
-## logging.basicConfig(filename='debug.log',level=logging.DEBUG)
+logging.basicConfig(filename='debug.log',level=logging.DEBUG)
 
 def main(photo_file):
  '''Run a label request on a single image'''
@@ -21,12 +21,12 @@ def main(photo_file):
      ['https://www.googleapis.com/auth/cloud-platform'])
  credentials.authorize(http)
 
- try:
-     service = build('vision', 'v1', http=http, discoveryServiceUrl=API_DISCOVERY_FILE)
-     pass
- except TypeError, e:
+## try:
+ service = build('vision', 'v1', http=http, discoveryServiceUrl=API_DISCOVERY_FILE)
+##     pass
+## except TypeError, e:
      # Print the stack so you can fix the problem, see python exception traceback docs.
-     print str(e)
+##     print str(e)
     
  with open(photo_file, 'rb') as image:
    image_content = base64.b64encode(image.read())
