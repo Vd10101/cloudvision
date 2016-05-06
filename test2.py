@@ -9,7 +9,7 @@ from oauth2client.client import GoogleCredentials
 ##gflags.FLAGS['positional_parameters_enforcement'].value = 'EXCEPTION'
 
 import logging
-logging.basicConfig(filename='debug.log',level=logging.DEBUG)
+## logging.basicConfig(filename='debug.log',level=logging.DEBUG)
 
 def main(photo_file):
  '''Run a label request on a single image'''
