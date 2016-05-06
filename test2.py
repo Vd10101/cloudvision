@@ -5,9 +5,8 @@ import httplib2
 from apiclient.discovery import build
 from oauth2client.client import GoogleCredentials
 
-import gflags
-
-gflags.FLAGS['positional_parameters_enforcement'].value = 'EXCEPTION'
+##import gflags
+##gflags.FLAGS['positional_parameters_enforcement'].value = 'EXCEPTION'
 
 import logging
 logging.basicConfig(filename='debug.log',level=logging.DEBUG)
