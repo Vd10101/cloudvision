@@ -14,20 +14,17 @@ logging.basicConfig(filename='debug.log',level=logging.DEBUG)
 def main(photo_file):
  '''Run a label request on a single image'''
 
- API_DISCOVERY_FILE = 'https://vision.googleapis.com/$discovery/rest?version=v1'
+ API_DISCOVERY_FILE = 'https://{api}.googleapis.com/$discovery/rest?version={apiVersion}'
+ ## API_DISCOVERY_FILE = 'https://vision.googleapis.com/$discovery/rest?version=v1'
  http = httplib2.Http()
 
  credentials = GoogleCredentials.get_application_default().create_scoped(
      ['https://www.googleapis.com/auth/cloud-platform'])
  credentials.authorize(http)
 
-## try:
- service = build('vision', 'v1', http=http, discoveryServiceUrl=API_DISCOVERY_FILE)
-##     pass
-## except TypeError, e:
-     # Print the stack so you can fix the problem, see python exception traceback docs.
-##     print str(e)
-    
+ ## service = build('vision', 'v1', http=http, discoveryServiceUrl=API_DISCOVERY_FILE)
+ service = build('vision', 'v1', credentials=credentials, discoveryServiceUrl=API_DISCOVERY_FILE)
+
  with open(photo_file, 'rb') as image:
    image_content = base64.b64encode(image.read())
    service_request = service.images().annotate(
