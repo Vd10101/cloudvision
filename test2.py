@@ -5,6 +5,9 @@ import httplib2
 from apiclient.discovery import build
 from oauth2client.client import GoogleCredentials
 
+import logging
+logging.basicConfig(filename='debug.log',level=logging.DEBUG)
+
 def main(photo_file):
  '''Run a label request on a single image'''
 
