@@ -44,7 +44,10 @@ def request_ocr(api_key, image_filenames):
 
 if __name__ == '__main__':
     image_filenames = argv[0:]
-    api_key = "AIzaSyDfI4rpnquhYv5TG5cl-MzWkyg05Iw5wbY"
+    server_key ="AIzaSyB6njxPLls4tqs1WIPMIt_-6dNC3wBalzA"
+    browser_key = "AIzaSyDfI4rpnquhYv5TG5cl-MzWkyg05Iw5wbY"
+    api_key = server_key;
+    
     if not image_filenames:
         print("""
             Please supply one or more image filenames
