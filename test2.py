@@ -23,7 +23,7 @@ def main(photo_file):
  credentials.authorize(http)
 
  try:
-     service = build('vision', 'v1', http, discoveryServiceUrl=API_DISCOVERY_FILE)
+     service = build('vision', 'v1', http=http, discoveryServiceUrl=API_DISCOVERY_FILE)
      pass
  except TypeError, e:
      # Print the stack so you can fix the problem, see python exception traceback docs.
