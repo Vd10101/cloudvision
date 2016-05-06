@@ -5,6 +5,10 @@ import httplib2
 from apiclient.discovery import build
 from oauth2client.client import GoogleCredentials
 
+import gflags
+
+gflags.FLAGS['positional_parameters_enforcement'].value = 'EXCEPTION'
+
 import logging
 logging.basicConfig(filename='debug.log',level=logging.DEBUG)
 
@@ -18,8 +22,13 @@ def main(photo_file):
      ['https://www.googleapis.com/auth/cloud-platform'])
  credentials.authorize(http)
 
- service = build('vision', 'v1', http, discoveryServiceUrl=API_DISCOVERY_FILE)
-
+ try:
+     service = build('vision', 'v1', http, discoveryServiceUrl=API_DISCOVERY_FILE)
+     pass
+ except TypeError, e:
+     # Print the stack so you can fix the problem, see python exception traceback docs.
+     print str(e)
+    
  with open(photo_file, 'rb') as image:
    image_content = base64.b64encode(image.read())
    service_request = service.images().annotate(
